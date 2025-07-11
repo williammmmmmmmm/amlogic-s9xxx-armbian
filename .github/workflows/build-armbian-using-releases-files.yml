@@ -308,13 +308,13 @@ jobs:
           ln -sf /builder/build ${GITHUB_WORKSPACE}/build
           ln -sf /builder/build /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/build
 
-          GITHUB_REPO_URL="https://api.github.com/repos/ophub/kernel/releases?per_page=100"
+          GITHUB_REPO_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?per_page=100"
           echo "Requesting URL: ${GITHUB_REPO_URL}"
           
           latest_version=$(curl -s \
                 -H "Accept: application/vnd.github+json" \
                 -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-                ${GITHUB_REPO_URL} | \
+                https://api.github.com/repos/${GITHUB_REPOSITORY}/releases?per_page=100 |\
                 jq -r --arg RTK "Armbian_${{ inputs.set_release }}_" \
                 --arg BOARD "-trunk_" \
                 '[.[] | select(.tag_name | contains($RTK))] |
