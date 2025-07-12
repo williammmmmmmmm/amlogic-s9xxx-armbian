@@ -251,11 +251,7 @@ on:
         required: false
         default: "6.1.115"
         type: string
-      kernel_auto:
-        description: "设置是否自动采用同系列最新版本内核。."
-        required: false
-        default: true
-        type: boolean
+
 
 env:
   TZ: America/New_York
@@ -361,7 +357,7 @@ jobs:
           armbian_fstype: ${{ inputs.armbian_fstype }}
           builder_name: ${{ inputs.builder_name }}
           kernel_version: ${{ inputs.kernel_version }}
-          kernel_auto: ${{ inputs.kernel_auto }}
+          kernel_auto: false
 
       - name: Upload Armbian image to Release
         uses: ncipollo/release-action@main
